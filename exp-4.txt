@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>User Form</title>
+</head>
+
+<body>
+
+<h2>Enter Your Details</h2>
+
+<form action="DisplayInfo" method="post">
+
+Name: <input type="text" name="name"><br><br>
+
+Age: <input type="text" name="age"><br><br>
+
+<input type="submit" value="Submit">
+
+</form>
+
+</body>
+</html>
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet("/DisplayInfo")
+
+public class DisplayInfo extends HttpServlet {
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        String name = request.getParameter("name");
+        String age = request.getParameter("age");
+
+        out.println("<html><body>");
+        out.println("<h1>Hello " + name + "! You are " + age + " years old.</h1>");
+        out.println("</body></html>");
+    }
+}
